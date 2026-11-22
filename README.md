@@ -1,58 +1,88 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# SoloLedger
 
-## About Laravel
+**Autonomous Back-Office, Invoicing & Financial Intelligence SaaS for Solo Digital Freelancers**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+[![PHP Version](https://img.shields.io/badge/PHP-8.3%2B-777BB4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
+[![Laravel Version](https://img.shields.io/badge/Laravel-13.x-FF2D20?style=flat-square&logo=laravel&logoColor=white)](https://laravel.com/)
+[![MySQL Version](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Alpine.js](https://img.shields.io/badge/Alpine.js-3.x-8BC0D0?style=flat-square&logo=alpine.js&logoColor=white)](https://alphinejs.dev/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular_Monolith-10B981?style=flat-square)](#modular-architecture)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+*Replace fragmented spreadsheets, manual payment chasing, and tax-season panic with an event-driven financial operating system built for independent developers, designers, and IT consultants.*
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+[Key Capabilities](#key-capabilities) • [Modular Architecture](#modular-architecture) • [Installation](#installation--setup) • [Configuration](#environment-configuration) • [Automation Engine](#automation--analytics-engine) • [License](#license)
 
-## Learning Laravel
+</div>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Overview
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+**SoloLedger** is a multi-tenant SaaS application engineered on a **Strict Modular Monolith** architecture using **Laravel 13** and **MySQL 8**. Designed specifically for solo digital freelancers and independent contractors, it bridges the gap between scope approval, time tracking, multi-currency billing, payment collection, automated follow-ups, and accountant-ready tax reporting.
 
-## Agentic Development
+Unlike traditional passive bookkeeping tools, SoloLedger features an **Event-Driven Automation Engine**, **Predictive 90-Day Cash-Flow Forecasting**, **Multi-SMTP Failover Routing**, and native **TDS/Withholding & Realized FX Gain/Loss** accounting.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
-```bash
-composer require laravel/boost --dev
+## Key Capabilities
 
-php artisan boost:install
-```
+### Scope-to-Cash & Invoicing
+- **Interactive Estimates & E-Signatures (`/e/{uuid}`):** Send proposals with client-selectable optional add-ons, capture typed or canvas e-signatures with IP/timestamp audit trails, and convert accepted quotes into deposit invoices in one click.
+- **Change-Order Micro-Approvals:** Send 1-click approval links (`/approve/{uuid}`) for out-of-scope requests that automatically append to active project invoices.
+- **Time-to-Invoice Roll-Up:** Built-in browser timer and manual project logs with one-click conversion of unbilled hours into itemized invoice line items.
+- **Milestone & Recurring Billing:** Split projects into automated payment tranches (e.g., 40% upfront, 30% staging, 30% handover) or configure hands-free recurring retainer schedules.
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Frictionless Global Payments & Compliance
+- **Direct Gateway Checkout (`/i/{uuid}`):** Accept cards, UPI, and bank transfers directly on public invoice pages via tenant-configured **Stripe**, **Razorpay**, or **PayPal** credentials with signature-verified webhook reconciliation.
+- **Multi-Currency & Realized FX Tracking:** Issue invoices in USD, EUR, GBP, or any ISO currency while maintaining books in your base currency. Captures exchange rates at issuance and settlement to compute **Realized FX Gain/Loss** automatically.
+- **TDS & Withholding Tax Ledger:** Separately tracks client-deducted withholding taxes (`tds_withheld_amount`) so invoices settled via `Cash + TDS` accurately close as `100% Paid`.
+- **Export / LUT & Reverse-Charge Support:** One-click compliance toggles for zero-rated international service exports (GST LUT declarations, EU Reverse-Charge VAT notes).
 
-## Contributing
+### Autonomous Operations & Intelligence
+- **Visual Rule-Based Automation Engine:** Build `Trigger → Condition → Action` workflows (e.g., *When Invoice is Overdue >= 3 days AND Amount > $500 → Send escalation email + Apply 2% late fee + Fire HMAC webhook*).
+- **90-Day Cash-Flow Forecast & Tax Vault:** Projects 30/60/90-day inflows weighted by each client's historical payment velocity, while automatically calculating a dedicated tax reserve from net profits.
+- **Client Reliability Scoring:** Automatically grades clients (`A` to `D`) based on on-time payment ratios and average days-to-pay.
+- **Multi-Provider Mail Router & Failover:** Configure multiple outbound transports per tenant (**Custom SMTP, Amazon SES, Postmark, Resend, Mailgun**) with encrypted credentials, priority failover, daily rate-limit protection, and signed 1x1 open-tracking pixels.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Expense Vault, Reconciliation & Portals
+- **AI Receipt OCR & Email-to-Expense:** Upload receipt photos/PDFs or forward vendor invoices to your tenant alias (`receipts+{alias}@domain`) to extract vendor, date, tax, and amount via configurable OpenAI-compatible vision/LLM endpoints (supports local **Ollama** or cloud APIs).
+- **Bank / UPI CSV Smart Reconciliation:** Fuzzy-matches uploaded bank statements against open invoices and logged expenses for rapid 1-click reconciliation.
+- **Client Self-Service Hub (`/portal/{token}`):** Passwordless magic-link portal for repeat clients to view invoice history, download PDFs, and manage billing details.
+- **Read-Only Accountant / CA Seat & Export Pack:** Invite external accountants with read-only access and generate one-click Fiscal Year ZIP packs (`invoices_summary.csv`, `expenses_ledger.csv`, `fx_and_tds_report.csv`, `profit_and_loss.pdf`).
+- **White-Label Custom Domains:** Map custom CNAME domains (`billing.yourstudio.com`) to serve public invoices, estimates, and portals under your own brand identity.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Modular Architecture
 
-## Security Vulnerabilities
+SoloLedger enforces strict domain boundaries inside `app/Modules/`. Each module encapsulates its own Models, Migrations, Actions, Services, Events, Listeners, Policies, Controllers, FormRequests, Routes, and Blade Views. Cross-module communication occurs exclusively via **Domain Events** or **Core Service Contracts**.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```text
+app/
+├── Core/                          # Shared Kernel (Multi-tenancy, Contracts, Base Concerns)
+│   ├── Concerns/
+│   │   └── BelongsToTenant.php    # Global Eloquent scope enforcing workspace isolation
+│   ├── Contracts/                 # Cross-module interfaces (MailDispatcherContract, etc.)
+│   ├── Middleware/
+│   │   └── ResolveCustomDomain.php# CNAME white-label tenant resolver
+│   └── Support/
+│       └── CurrencyConverter.php  # Precision DECIMAL(10,6) FX calculation utilities
+│
+├── Modules/
+│   ├── Identity/                  # Workspace settings, Tax/FX defaults, Accountant RBAC, Sanctum API
+│   ├── Crm/                       # Clients, Projects, Client Portal (/portal/{token}), Reliability Scoring
+│   ├── Estimates/                 # Quotes, Optional add-ons, E-Signatures (/e/{uuid}), Change-Orders
+│   ├── TimeTracking/              # Live timer, Billable logs, Unbilled-hours-to-invoice roll-up
+│   ├── Billing/                   # Invoices, Milestones, Recurring schedules, TDS, FX Gain/Loss
+│   ├── Payments/                  # Stripe, Razorpay, PayPal drivers, Webhook handlers, Ledger entries
+│   ├── Expenses/                  # Expense ledger, Private receipt vault, AI OCR, Email-to-Expense
+│   ├── Communications/            # Multi-SMTP/API Mail Router, Failover engine, Open tracking
+│   ├── Automation/                # Event-driven Rule Engine, HMAC Webhooks, WhatsApp/Telegram alerts
+│   └── Analytics/                 # Dashboard KPIs, 90-Day Forecast, Tax Vault, CSV Reconciliation, CA Pack
+│
+└── Providers/
+    └── ModuleServiceProvider.php  # Auto-registers module routes, migrations, views, and listeners
